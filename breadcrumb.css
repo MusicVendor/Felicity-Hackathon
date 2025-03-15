@@ -1,0 +1,37 @@
+/*Breadcrumb CSS*/
+.breadcrumb {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid #eaeaea;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.breadcrumb a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    transform: translateX(2px);
+}
+
+.breadcrumb .divider {
+    margin: 0 8px;
+    color: #777;
+}
+
+.time-estimate {
+    margin-left: auto;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: #f0f7ff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}

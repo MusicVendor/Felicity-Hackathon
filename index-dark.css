@@ -1,0 +1,83 @@
+/* Dark theme variables */
+.dark-mode {
+    --primary-color: #4d96ff;
+    --secondary-color: #3d7de3;
+    --accent-color: #ff9f43;
+    --text-color: #e0e0e0;
+    --text-light: #b0b0b0;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --card-border: #333;
+    --nav-bg: #1a1a1a;
+    --header-bg: #1a1a1a;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    --button-hover: #3d7de3;
+    --code-bg: #282c34;
+    --tag-bg: #1a3152;
+}
+
+body.dark-mode .mode-icon {
+    color: #e0e0e0;
+}
+
+/* Dark Mode Styles for Navigation */
+body.dark-mode .navBar {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .logo-text {
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-links a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-links a::after {
+    background-color: #64b5f6;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: #64b5f6;
+}
+
+body.dark-mode .nav-links a.active {
+    color: #64b5f6;
+    border-bottom: 2px solid #64b5f6;
+}
+
+/* Ensure images have proper contrast in dark mode */
+.dark-mode img {
+    filter: brightness(0.9);
+}
+
+/* Make sure placeholders are visible in dark mode */
+.dark-mode input::placeholder {
+    color: #888;
+}
+
+/* Improve visibility of icons in dark mode */
+.dark-mode .fas {
+    color: inherit;
+}
+
+/* Ensure dropdown menus remain readable in dark mode */
+.dark-mode select, 
+.dark-mode .filter-dropdown {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--card-border);
+}
+
+/* Add subtle borders to cards for better definition in dark mode */
+.dark-mode .lab-card {
+    border: 1px solid var(--card-border);
+}
+
+/* Fix focus states for inputs in dark mode */
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode button:focus {
+    outline-color: var(--primary-color);
+}

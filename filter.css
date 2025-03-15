@@ -1,0 +1,73 @@
+/* Base styling and variables */
+:root {
+    --primary-color: #4285f4;
+    --text-color: #333;
+    --text-light: #666;
+    --bg-color: #fff;
+    --card-bg: #fff;
+    --card-border: #e0e0e0;
+    --nav-bg: #fff;
+    --header-bg: #f5f5f5;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --button-hover: #2c6ed5;
+    --code-bg: #f0f0f0;
+    --tag-bg: #e9f2ff;
+    --transition: all 0.3s ease;
+}
+
+/* Filter sections */
+.category-filter, .filter-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+  
+.filter-button {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+  
+.filter-button:hover, .filter-button.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+  
+.filter-section {
+    justify-content: flex-start;
+    background-color: var(--header-bg);
+    padding: 1rem;
+    border-radius: 8px;
+}
+  
+.filter-label {
+    font-weight: 500;
+    margin-right: 1rem;
+    color: var(--text-color);
+}
+  
+.filter-options {
+    display: flex;
+    gap: 0.5rem;
+}
+  
+.filter-dropdown {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+  
+.clear-button {
+    margin-left: auto;
+    color: var(--primary-color);
+    font-weight: 500;
+}

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Basic Logic Gates Virtual Lab - Virtual Labs</title>
+    <link rel="stylesheet" href="logic-dark.css">
+    <link rel="stylesheet" href="logic-light.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="breadcrumb.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="gates.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navBar">
+        <div class="logo-container">
+            <a href="index.html"><img src="/images/logo.jpg" alt="Virtual Labs Logo" height="40" href></a>
+            <div class="logo-text">
+                <p>An initiative by</p>
+                <h4><span class="bold">Ministry Of Education</span></h4>
+                <p>Under the National Mission on Education through ICT</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#">About Us</a>
+            <a href="#" class="active">Labs</a>
+            <a href="#">NMEICT</a>
+            <button class="mode-toggle">
+                <span class="mode-icon">☽</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Section -->
+    <div class="breadcrumb">
+        <a href="#">Labs</a>
+        <span class="divider">></span>
+        <span class>Basic Logic Gates</span>
+        <div class="time-estimate"><span class="bold">Estimated Time: </span>20 mins</div>
+        <div class="user-guide-link" id="user-guide-btn">
+            <span class-="guide-icon">📚</span>
+            User Guide
+        </div>
+    </div>
+
+    <!--Popup model for the User Guide-->
+    <div id="guide-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Lab Navigation Guide</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>How to navigate this lab:</h3>
+                <ul>
+                    <li><strong>Sidebar Menu:</strong> Use the left sidebar to navigate between different sections of
+                        the lab</li>
+                    <li><strong>Next/Previous Buttons:</strong> Navigate sequentially using the buttons at the bottom of
+                        each section</li>
+                    <li><strong>Lab Assistant:</strong> Click the lab assistant icon in the bottom-right corner for help
+                    </li>
+                    <li><strong>Mobile Navigation:</strong> On smaller screens, use the menu button (≡) to access the
+                        sidebar</li>
+                    <li><strong>Dark Mode:</strong> Toggle between light and dark mode using the moon icon in the top
+                        menu</li>
+                </ul>
+                <h3>Recommended Workflow:</h3>
+                <ol>
+                    <li>Start with the <strong>Aim</strong> and <strong>Overview</strong> sections</li>
+                    <li>Complete the <strong>Pretest</strong> to assess your knowledge</li>
+                    <li>Work through each logic gate simulation in order</li>
+                    <li>Complete the <strong>Post Test</strong> to validate your learning</li>
+                    <li>Explore <strong>Further Reading</strong> to deepen your understanding</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-button">
+            <button onclick="showSection('aim')">Aim</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('overview')">Overview</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('pretest')">Pretest</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('and')">AND Gate</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('or')">OR Gate</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('not')">NOT Gate</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('postTest')">Post Test</button>
+        </div>
+        <div class="sidebar-button">
+            <button onclick="showSection('furtherReading')">Further Reading</button>
+        </div>
+    </aside>
+
+    <!--Main Content-->
+    <div class="main-content">
+        <div id="aim" class="section active">
+            <h1 class="section-title">Aim</h1>
+            <p class="section-description">
+                To understand and implement basic logic gates (AND, OR, NOT, NAND, NOR, XOR, XNOR), analyze their
+                functionality, and verify their truth tables.
+            </p>
+
+            <h2 style="margin-bottom: 15px;">In this lab</h2>
+            <ul class="content-bullets">
+                <li>Learn about different logic gates and their symbols</li>
+                <li>Understand the truth tables for each logic gate</li>
+                <li>Implement and test each logic gate using interactive simulations</li>
+                <li>Verify the output of logic gates for different input combinations</li>
+                <li>Compare the functionality of different logic gates</li>
+            </ul>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button">
+                    <span>←</span>
+                    Previous
+                </a>
+                <a href="#" class="next-button" onclick="showSection('overview')">
+                    Overview
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="overview" class="section">
+            <h1 class="section-title">Overview</h1>
+            <p class="section-description">
+                Logic gates are the fundamental building blocks of digital circuits. They process binary inputs (0s and
+                1s) to produce a desired output based on logical operations. In this lab, we will explore different
+                types of logic gates, their truth tables, and real-world applications.
+            </p>
+
+            <h2 style="margin-bottom: 15px;">Topics covered in this lab:</h2>
+            <ul class="content-bullets">
+                <li>Basic logic gates (AND, OR, NOT, NAND, NOR, XOR, XNOR)</li>
+                <li>Truth tables and their verification</li>
+                <li>Implementation using interactive simulations</li>
+                <li>Applications in digital electronics</li>
+            </ul>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('aim')">
+                    <span>←</span>
+                    Aim
+                </a>
+                <a href="#" class="next-button" onclick="showSection('pretest')">
+                    Pretest
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="pretest" class="section">
+            <h1 class="section-title">Pretest</h1>
+            <p class="section-description">
+                Before starting the lab, test your existing knowledge with the following questions:
+            </p>
+
+            <h2 style="margin-bottom: 15px;">Questions</h2>
+            <ul class="content-bullets">
+                <li>1. What is the output of an AND gate if both inputs are 1?</li>
+                <ul>
+                    <li>a. 0</li>
+                    <li>b. 1</li>
+                    <li>c. Either 0 or 1</li>
+                    <li>d. None of the above</li>
+                </ul>
+                <li>2. What is the output of a NAND gate if both inputs are 1?</li>
+                <ul>
+                    <li>a. 0</li>
+                    <li>b. 1</li>
+                    <li>c. 2</li>
+                    <li>d. None of the above</li>
+                </ul>
+            </ul>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('overview')">
+                    <span>←</span>
+                    Overview
+                </a>
+                <a href="#" class="next-button" onclick="showSection('and')">
+                    AND Gate
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        
+        <div id="and" class="section">
+            <h1 class="section-title">AND Gate</h1>
+            <p class="section-description">
+                Definition: An AND gate produces an output of 1 only if both inputs are 1. Otherwise, the output is 0.
+            </p>
+            <div class="gates-container">
+                <div class="gate-item" onclick="selectGate('AND')">
+                    <svg class="gate-icon" viewBox="0 0 100 60">
+                        <path d="M30,10 Q70,10 70,30 Q70,50 30,50 Z" stroke="black" stroke-width="2" fill="white" />
+                        <line x1="10" y1="20" x2="30" y2="20" stroke="black" stroke-width="2" />
+                        <line x1="10" y1="40" x2="30" y2="40" stroke="black" stroke-width="2" />
+                        <line x1="70" y1="30" x2="90" y2="30" stroke="black" stroke-width="2" />
+                    </svg>
+                    <p>AND Gate</p>
+                </div>
+            </div>
+            
+            <div id="and-simulation" class="simulation-container">
+                <h3>AND Gate Simulation</h3>
+                
+                <div class="control-panel">
+                    <div class="switch-container">
+                        <label>Input A:</label>
+                        <label class="switch">
+                            <input type="checkbox" id="inputA-and" onchange="updateOutput('AND')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="switch-container">
+                        <label>Input B:</label>
+                        <label class="switch">
+                            <input type="checkbox" id="inputB-and" onchange="updateOutput('AND')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="switch-container">
+                        <label>Output:</label>
+                        <div id="output-and" class="led"></div>
+                    </div>
+                </div>
+                
+                <h3>Truth Table</h3>
+                <table class="truth-table">
+                    <thead>
+                        <tr>
+                            <th>Input A</th>
+                            <th>Input B</th>
+                            <th>Output</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('pretest')">
+                    <span>←</span>
+                    Pretest
+                </a>
+                <a href="#" class="next-button" onclick="showSection('or')">
+                    OR Gate
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="or" class="section">
+            <h1 class="section-title">OR Gate</h1>
+            <p class="section-description">
+                Definition:
+                An OR gate produces an output of 1 if at least one input is 1.
+            </p>
+
+            <div class="gates-container">
+                <div class="gate-item" onclick="selectGate('OR')">
+                    <svg class="gate-icon" viewBox="0 0 100 60">
+                        <path d="M25,10 Q65,30 25,50 Q35,30 25,10 Z" stroke="black" stroke-width="2" fill="white" />
+                        <line x1="10" y1="20" x2="28" y2="20" stroke="black" stroke-width="2" />
+                        <line x1="10" y1="40" x2="28" y2="40" stroke="black" stroke-width="2" />
+                        <line x1="65" y1="30" x2="90" y2="30" stroke="black" stroke-width="2" />
+                    </svg>
+                    <p>OR Gate</p>
+                </div>
+            </div>
+            
+            <div id="or-simulation" class="simulation-container">
+                <h3>OR Gate Simulation</h3>
+                
+                <div class="control-panel">
+                    <div class="switch-container">
+                        <label>Input A:</label>
+                        <label class="switch">
+                            <input type="checkbox" id="inputA-or" onchange="updateOutput('OR')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="switch-container">
+                        <label>Input B:</label>
+                        <label class="switch">
+                            <input type="checkbox" id="inputB-or" onchange="updateOutput('OR')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="switch-container">
+                        <label>Output:</label>
+                        <div id="output-or" class="led"></div>
+                    </div>
+                </div>
+                
+                <h3>Truth Table</h3>
+                <table class="truth-table">
+                    <thead>
+                        <tr>
+                            <th>Input A</th>
+                            <th>Input B</th>
+                            <th>Output</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('and')">
+                    <span>←</span>
+                    AND Gate
+                </a>
+                <a href="#" class="next-button" onclick="showSection('not')">
+                    NOT Gate
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="not" class="section">
+            <h1 class="section-title">NOT Gate</h1>
+            <p class="section-description">
+                Definition:
+                A NOT gate (also known as an inverter) produces the opposite of the input signal.
+            </p>
+
+            <div class="gates-container">
+                <div class="gate-item" onclick="selectGate('NOT')">
+                    <svg class="gate-icon" viewBox="0 0 100 60">
+                        <path d="M30,10 L30,50 L70,30 Z" stroke="black" stroke-width="2" fill="white" />
+                        <circle cx="75" cy="30" r="5" stroke="black" stroke-width="2" fill="white" />
+                        <line x1="10" y1="30" x2="30" y2="30" stroke="black" stroke-width="2" />
+                        <line x1="80" y1="30" x2="90" y2="30" stroke="black" stroke-width="2" />
+                    </svg>
+                    <p>NOT Gate</p>
+                </div>
+            </div>
+            
+            <div id="not-simulation" class="simulation-container">
+                <h3>NOT Gate Simulation</h3>
+                
+                <div class="control-panel">
+                    <div class="switch-container">
+                        <label>Input:</label>
+                        <label class="switch">
+                            <input type="checkbox" id="inputA-not" onchange="updateOutput('NOT')">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="switch-container">
+                        <label>Output:</label>
+                        <div id="output-not" class="led"></div>
+                    </div>
+                </div>
+                
+                <h3>Truth Table</h3>
+                <table class="truth-table">
+                    <thead>
+                        <tr>
+                            <th>Input</th>
+                            <th>Output</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('or')">
+                    <span>←</span>
+                    OR Gate
+                </a>
+                <a href="#" class="next-button" onclick="showSection('postTest')">
+                    Post Test
+                    <span>→</span>
+                </a>
+            </div>
+        </div>   
+        
+        <div id="postTest" class="section">
+            <h1 class="section-title">Post Test</h1>
+            <p class="section-description">
+                Test your understanding of logic gates after completing the lab exercises.
+            </p>
+
+            <h2 style="margin-bottom: 15px;">Questions</h2>
+            <ul class="content-bullets">
+                <li>1. What is the Boolean expression for an AND gate?</li>
+                <ul>
+                    <li>a. A + B</li>
+                    <li>b. A · B</li>
+                    <li>c. A ⊕ B</li>
+                    <li>d. Ā</li>
+                </ul>
+                <li>2. Which gate is known as a universal gate?</li>
+                <ul>
+                    <li>a. AND</li>
+                    <li>b. OR</li>
+                    <li>c. NOT</li>
+                    <li>d. NAND</li>
+                </ul>
+            </ul>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('not')">
+                    <span>←</span>
+                    NOT Gate
+                </a>
+                <a href="#" class="next-button" onclick="showSection('furtherReading')">
+                    Further Reading
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="furtherReading" class="section">
+            <h1 class="section-title">Further Reading</h1>
+            <p class="section-description">
+                Explore these resources to deepen your understanding of logic gates and digital circuits.
+            </p>
+
+            <h2 style="margin-bottom: 15px;">Recommended Resources</h2>
+            <ul class="content-bullets">
+                <li>Digital Design by Morris Mano</li>
+                <li>Introduction to Boolean Algebra and Logic Gates</li>
+                <li>Applications of Logic Gates in Digital Electronics</li>
+                <li>Combinational Logic Circuits Design</li>
+                <li>Boolean Algebra Theorems and Properties</li>
+            </ul>
+
+            <div class="navigation-buttons">
+                <a href="#" class="previous-button" onclick="showSection('postTest')">
+                    <span>←</span>
+                    Post Test
+                </a>
+                <a href="#" class="next-button" onclick="showSection('aim')">
+                    Start Over
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="feedback-buttons">
+        <a href="#" class="feedback-btn">
+            <span>📝</span>
+            Give Feedback
+        </a>
+        <a href="#" class="feedback-btn">
+            <span>⚠️</span>
+            Report Issue
+        </a>
+    </div>
+
+    <div class="chat-icon" id="chat-icon">
+        <i class="fas fa-flask"></i>
+    </div>
+
+    <!-- Chat Widget Container -->
+    <div class="widget-container" id="widget-container">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-header-title">
+                    <i class="fas fa-flask"></i>
+                    <h1>Virtual Lab Assistant</h1>
+                </div>
+                <div class="chat-controls">
+                    <button class="control-button minimize-button" id="minimize-button">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button class="control-button close-button" id="close-button">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat-box" id="chat-box">
+                <div class="welcome-message">
+                    <div class="assistant-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-sender">Virtual Lab Assistant</div>
+                        <div class="message-text">Hello! I'm your Virtual Lab Assistant. How can I help with your
+                            experiments today?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask a question about your lab..." />
+                <button id="send-button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button class="menu-toggle">≡</button>
+    <script src="logic.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="gate.js"></script>
+    <script src="toggle.js"></script>
+</body>
+</html>

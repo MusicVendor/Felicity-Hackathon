@@ -1,0 +1,139 @@
+/* Base styling and variables */
+:root {
+    --primary-color: #4285f4;
+    --secondary-color: #2c6ed5;
+    --accent-color: #f48942;
+    --text-color: #333;
+    --text-light: #666;
+    --bg-color: #fff;
+    --card-bg: #fff;
+    --card-border: #e0e0e0;
+    --nav-bg: #fff;
+    --header-bg: #f5f5f5;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --button-hover: #2c6ed5;
+    --code-bg: #f0f0f0;
+    --tag-bg: #e9f2ff;
+    --transition: all 0.3s ease;
+}
+
+/* Navigation */
+.navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+  
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+  
+.logo-text {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+  
+.logo-text p {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin: 0;
+}
+  
+.logo-text h4 {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--text-color);
+}
+  
+.nav-links {
+    display: flex;
+    gap: 0.2rem;
+}
+  
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 1rem 0.8rem;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #007bff;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-links a.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+.nav-links a.active::after {
+    justify-content: center;
+    width: 100%;
+    left: 0;
+}
+  
+.mode-toggle {
+    padding-top: 1rem;
+    margin-left: 1rem;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--text-color);
+}
+
+
+/*CHCEK IF THIS CSS IS USED ANYWHERE*/
+.mode-icon {
+    display: inline-block;
+    line-height: 1;
+    color: #333;
+}
+/*ONLY THIS ONE*/
+
+.mode-toggle:hover {
+    padding-bottom: 1.5rem;
+    transform: rotate(180deg);
+    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}

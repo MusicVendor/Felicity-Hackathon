@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #widget-container {
+            width: 350px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        #chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #chat-icon.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        #chat-box {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .message-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-message, .assistant-message {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .assistant-message {
+            justify-content: flex-start;
+        }
+
+        .user-avatar, .assistant-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #eee;
+            margin: 0 5px;
+        }
+
+        .message-text {
+            background-color: #e0e0e0;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 70%;
+        }
+
+        .user-message .message-text {
+            background-color: #dcf8c6;
+        }
+
+        #input-container {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #send-button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        #widget-container.active {
+            display: flex;
+        }
+
+        #widget-container {
+            display: none;
+        }
+
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+        }
+
+        .widget-header button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .typing-indicator {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1s infinite alternate;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            from {
+                opacity: 0.4;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="widget-container">
+        <div class="widget-header">
+            <span>Chat with Gemini</span>
+            <div>
+                <button id="minimize-button"><i class="fas fa-window-minimize"></i></button>
+                <button id="close-button"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="chat-box"></div>
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <div id="chat-icon"><i class="fas fa-comment-dots"></i></div>
+
+    <script>
+        // Store API key and get DOM elements
+        const API_KEY = "AIzaSyDkdNV-Es1HChn66x3uJMpcRQP1d7TQWcg"; //Replace with your API key
+        const chatBox = document.getElementById("chat-box");
+        const userInput = document.getElementById("user-input");
+        const sendButton = document.getElementById("send-button");
+        const chatIcon = document.getElementById("chat-icon");
+        const widgetContainer = document.getElementById("widget-container");
+        const minimizeButton = document.getElementById("minimize-button");
+        const closeButton = document.getElementById("close-button");
+
+        // Chat widget state
+        let isChatOpen = false;
+
+        function initChat() {
+            chatIcon.classList.add("pulse");
+            chatIcon.addEventListener("click", toggleChat);
+            minimizeButton.addEventListener("click", closeChat);
+            closeButton.addEventListener("click", closeChat);
+            sendButton.addEventListener("click", sendMessage);
+            userInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        }
+
+        function toggleChat() {
+            if (isChatOpen) {
+                closeChat();
+            } else {
+                openChat();
+            }
+        }
+
+        function openChat() {
+            widgetContainer.classList.add("active");
+            chatIcon.style.display = "none";
+            isChatOpen = true;
+            setTimeout(() => userInput.focus(), 300);
+            chatIcon.classList.remove("pulse");
+        }
+
+        function closeChat() {
+            widgetContainer.classList.remove("active");
+            chatIcon.style.display = "flex";
+            isChatOpen = false;
+        }
+
+        async function sendMessage() {
+            let message = userInput.value.trim();
+            if (message === "") return;
+            appendUserMessage(message);
+            userInput.value = "";
+            showTypingIndicator();
+
+            try {
+                const botReply = await fetchGeminiResponse(message);
+                removeTypingIndicator();
+                appendAssistantMessage(botReply);
+            } catch (error) {
+                console.error("Error:", error);
+                removeTypingIndicator();
+                appendAssistantMessage("Sorry, I encountered an error: " + (error.message || "Unable to fetch response"));
+            }
+        }
+
+        async function fetchGeminiResponse(userMessage) {
+            const url = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateText?key=${API_KEY}`;
+
+            const payload = {
+                prompt: {text: userMessage},
+                temperature: 0.7,
+                maxTokens: 150
+            };
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            return data.candidates?.[0]?.output || "I'm not sure how to respond to that.";
+        }
+
+        function appendUserMessage(text) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "user-message";
+            messageDiv.innerHTML = `<div class="message-content"><div class="message-sender">You</div><div class="message-text">${text}</div></div><div class="user-avatar"><i class="fas fa-user"></i></div>`;
+            chatBox.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function appendAssistantMessage(text) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "assistant-message";
+            messageDiv.innerHTML = `<div class="assistant-avatar"><i class="fas fa-robot"></i></div><div class="message-content"><div class="message-sender">Virtual Lab Assistant</div><div class="message-text">${text}</div></div>`;
+            chatBox.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            const indicatorDiv = document.createElement("div");
+            indicatorDiv.className = "assistant-message typing-indicator-container";
+            indicatorDiv.id = "typing-indicator";
+            indicatorDiv.innerHTML = `<div class="assistant-avatar"><i class="fas fa-robot"></i></div><div class="message-content"><div class="message-sender">Virtual Lab Assistant</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+            chatBox.appendChild(indicatorDiv);
+            scrollToBottom();
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById("typing-indicator");
+            if (indicator) {
+                chatBox.removeChild(indicator);
+            }
+        }
+
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        document.addEventListener("DOMContentLoaded", initChat);
+    </script>
+</body>
+</html>

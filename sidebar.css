@@ -1,0 +1,46 @@
+/*Sidebar*/
+.sidebar {
+    width: 220px;
+    background-color: #fff;
+    padding: 20px 0;
+    box-shadow: 1px 0 5px rgba(0,0,0,0.05);
+    float:left;
+    height: calc(100vh - 150px);
+    border-radius: 6px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    overflow-y: auto;
+}
+
+.sidebar-button {
+    border-bottom: 1px solid #eaeaea;
+    transition: border-color 0.3s ease;
+}
+
+.sidebar-button button {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    margin: 5px 0;
+    border: none;
+    background: none;
+    color: #444;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: left;
+    border-left: 0px solid transparent;
+    transition: background 0.3s ease, color 0.3s ease, border-left 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar-button button:hover {
+    background: linear-gradient(to right, #e6f2ff, transparent);
+    color: #007bff;
+    padding-left: 20px;
+    border-left: 3px solid #007bff;
+}
+
+.sidebar-button button.active-button {
+    background: linear-gradient(to right, #e1f0ff, #f5f9ff);
+    border-left: 4px solid #007bff;
+    color: #007bff;
+    font-weight: bold;
+}

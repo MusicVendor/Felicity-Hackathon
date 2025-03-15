@@ -1,0 +1,256 @@
+/* Base styling and variables */
+:root {
+    --primary-color: #4285f4;
+    --text-color: #333;
+    --text-light: #666;
+    --bg-color: #fff;
+    --card-bg: #fff;
+    --card-border: #e0e0e0;
+    --nav-bg: #fff;
+    --header-bg: #f5f5f5;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --button-hover: #2c6ed5;
+    --code-bg: #f0f0f0;
+    --tag-bg: #e9f2ff;
+    --transition: all 0.3s ease;
+}
+  
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: var(--transition);
+    line-height: 1.6;
+}
+  
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+  
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+  
+ul {
+    list-style: none;
+}
+
+/* Main content sections */
+.main-content {
+    display: flex;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+    min-height: 85vh;
+    align-items: center;
+    overflow: hidden;
+}
+  
+.content-left {
+    flex: 1;
+}
+  
+.content-left h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+  
+.content-left h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+  
+.content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 60vh;
+    overflow: hidden;
+}
+
+.content-right img {
+    max-width: 70vw;
+    max-height:60vh;
+    object-fit: contain;
+    height: auto;
+}
+
+ 
+/*Add Animation effect on this button*/
+.explore-btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+  
+.explore-btn:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+  
+.explore-btn span {
+    margin-left: 0.5rem;
+}
+  
+.content-left ul {
+    margin-bottom: 1rem;
+}
+  
+.content-left li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+  
+.content-left li:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+  
+.more-text {
+    color: var(--text-light);
+    font-style: italic;
+}
+  
+/* Stats section */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+    flex-wrap: wrap;
+}
+  
+.stat-item {
+    padding: 1rem;
+}
+  
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+  
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navBar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+    
+    .nav-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .nav-links a {
+        padding: 0.5rem;
+    }
+    
+    .mode-toggle {
+        margin-left: 1rem;
+    }
+    
+    .main-content {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .stats-container {
+        padding: 1rem;
+    }
+    
+    .labs-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+  
+@media (max-width: 480px) {
+    .stat-value {
+        font-size: 1.8rem;
+    }
+    
+    .labs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-options {
+        margin: 0.5rem 0;
+    }
+    
+    .clear-button {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .navBar {
+        padding: 0.8rem;
+    }
+    
+    .logo-container img {
+        height: 30px;
+    }
+    
+    .logo-text {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .nav-links {
+        flex-direction: column; /* Stack nav links on very small screens */
+        align-items: center;
+    }
+    
+    .nav-links a {
+        padding: 0.3rem;
+        width: 100%;
+        text-align: center;
+    }
+}
